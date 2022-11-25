@@ -97,8 +97,9 @@ length(unique(Main_Data$countrycode))
 length(unique(DAT$countrycode))
 
 # Save list of 100 countries needed for Figure 1
-tmp <- Main_Data[,c('countrycode','countryname')][!duplicated(Main_Data$countrycode),]
-colnames(tmp) <- c('ISO 3','NAME')
+tmp <- Main_Data[,c('countrycode', 'countryname')][
+  which(!duplicated(Main_Data$countrycode)),]
+colnames(tmp) <- c('ISO 3', 'NAME')
 tmp <- tmp[order(tmp$NAME),]
 
 MeanScholars <- tapply(Main_Data$padded_population_of_researchers, 
@@ -106,12 +107,12 @@ MeanScholars <- tapply(Main_Data$padded_population_of_researchers,
                        mean, na.rm=TRUE)
 MeanScholars <- MeanScholars[order(names(MeanScholars))]
 
-if (any(paste(tmp$NAME)!=names(MeanScholars))) stop()
+if (any(paste(tmp$NAME) != names(MeanScholars))) stop()
 
-tmp$`AVG SCHOLARS`<- as.numeric(MeanScholars)
-tmp<-tmp[order(tmp$`AVG SCHOLARS`,decreasing = TRUE),]
+tmp$`AVG SCHOLARS` <- as.numeric(MeanScholars)
+tmp <- tmp[order(tmp$`AVG SCHOLARS`, decreasing = TRUE),]
 
-write.csv(tmp, paste('COUNTRIES_LIST_',length(unique(Main_Data$countrycode)),
+write.csv(tmp, paste('COUNTRIES_LIST_', length(unique(Main_Data$countrycode)),
                      '.CSV'), row.names = FALSE)
 
 if (FALSE) { 
@@ -369,7 +370,7 @@ plot_data_and_fit <- function(Main_Model,
 }
 
 # Save the plot
-pdf('Figure_2.pdf')
+pdf('./FIGURES/Figure_2.pdf')
 par(mfrow = c(1, 1))
 par(mar = c(4, 4, 1, 1))
 plot_data_and_fit(Main_Model, 
