@@ -84,6 +84,8 @@ filter_data <- function(DAT, GDPType, NumberOfCountries){
                    paste(Replacement_countries, collapse = ', '), '.'))
   
   DAT <- DAT[which(DAT$countryname %in% SelectedCountries),]
+  DAT$countryname <- droplevels(DAT$countryname)
+  DAT$countrycode <- droplevels(DAT$countrycode)
   DAT
 }
 
@@ -92,6 +94,25 @@ Main_Data <- filter_data(DAT,
                        GDPType = 'GDP_PCAP_PPP_Const2017', 
                        NumberOfCountries = 100)
 length(unique(Main_Data$countrycode))
+length(unique(DAT$countrycode))
+
+# Save list of 100 countries needed for Figure 1
+tmp <- Main_Data[,c('countrycode','countryname')][!duplicated(Main_Data$countrycode),]
+colnames(tmp) <- c('ISO 3','NAME')
+tmp <- tmp[order(tmp$NAME),]
+
+MeanScholars <- tapply(Main_Data$padded_population_of_researchers, 
+                       Main_Data$countryname, 
+                       mean, na.rm=TRUE)
+MeanScholars <- MeanScholars[order(names(MeanScholars))]
+
+if (any(paste(tmp$NAME)!=names(MeanScholars))) stop()
+
+tmp$`AVG SCHOLARS`<- as.numeric(MeanScholars)
+tmp<-tmp[order(tmp$`AVG SCHOLARS`,decreasing = TRUE),]
+
+write.csv(tmp, paste('COUNTRIES_LIST_',length(unique(Main_Data$countrycode)),
+                     '.CSV'), row.names = FALSE)
 
 if (FALSE) { 
   # Alternative GDP measures used for the sensitivity analysis
