@@ -168,7 +168,15 @@ Simple_Model <- mgcv::gam(Simple_Formula,
                           select = FALSE,
                           method = 'REML')
 
+# Compare models
 AIC(Main_Model, Simple_Model)
+
+# Smooth term of year
+mgcv:::plot.gam(Main_Model, pages = 0, select=2, ylab='s(year)', ylim=c(-0.5, 0.5))
+
+# Smooth term of log GDP
+mgcv:::plot.gam(Main_Model, pages = 0, select=3, ylab='s(log GDP)', xlab='log GDP')
+
 
 ################################################################################
 ## PLOT RESULTS                                                               ##
