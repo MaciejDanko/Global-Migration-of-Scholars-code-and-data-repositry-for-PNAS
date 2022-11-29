@@ -13,7 +13,7 @@
 The data used were extracted from the Bibliometric Database <https://github.com/tomthe/bibliometrics> (*in preparation*)
 
 | Filename                  | Description                                                                                                                                                  |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------------------|---------------------------------------------------------|
 | README.MD                 | This file in Markdown format.                                                                                                                                |
 | README.HTML               | This file in html format.                                                                                                                                    |
 | TOM'S DATA FILE . CSV     | Data used to plot Figure 1.                                                                                                                                  |

@@ -105,6 +105,7 @@ tmp <- tmp[order(tmp$NAME),]
 MeanScholars <- tapply(Main_Data$padded_population_of_researchers, 
                        Main_Data$countryname, 
                        mean, na.rm=TRUE)
+
 MeanScholars <- MeanScholars[order(names(MeanScholars))]
 
 if (any(paste(tmp$NAME) != names(MeanScholars))) stop()
