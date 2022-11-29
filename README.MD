@@ -10,7 +10,7 @@
 
 **Clone of this repository on OSF**: <https://osf.io/238zn/>
 
-The data used were extracted from the Bibliometric Database (*in preparation*)
+The data used were extracted from the Bibliometric Database <https://github.com/tomthe/bibliometrics> (*in preparation*)
 
 | Filename                  | Description                                                                                                                                                  |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
