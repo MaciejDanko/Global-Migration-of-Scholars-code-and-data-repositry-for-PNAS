@@ -367,10 +367,10 @@ plot_data_and_fit <- function(Main_Model,
   
   # plot legend if simple model is also plotted
   if(plot_simple_model_fit) {
-    legend('topleft', c('Without country random-effects',
+    legend('bottomleft', c('Without country random-effects',
                         'With country random-effects'),
            lwd = 3.5, bty = 'n')
-    legend('topleft', c('Without country random-effects',
+    legend('bottomleft', c('Without country random-effects',
                         'With country random-effects'),
            col=c(adjustcolor(4, alpha.f = 0.8),
                  adjustcolor('darkorange', alpha.f = 0.8)),
