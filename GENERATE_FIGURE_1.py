@@ -29,6 +29,10 @@ import plotly.graph_objects as go
 #%%
 
 dfmipop = pd.read_csv("AGGREGATED_DATA.CSV")
+df_100_countries = pd.read_csv("COUNTRIES_LIST_ 100 .CSV")
+list_countrycodes_100 = df_100_countries["ISO 3"].unique()
+dfmipop = dfmipop[dfmipop["countrycode"].isin(list_countrycodes_100)]
+
 
 #%%
 print("Check whether the dataset still contains 100 countries: ", dfmipop["countrycode"].nunique(), " unique countries.")
