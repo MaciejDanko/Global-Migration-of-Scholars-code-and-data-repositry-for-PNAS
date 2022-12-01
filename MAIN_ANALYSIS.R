@@ -114,7 +114,7 @@ tmp$`AVG SCHOLARS` <- as.numeric(MeanScholars)
 tmp <- tmp[order(tmp$`AVG SCHOLARS`, decreasing = TRUE),]
 
 write.csv(tmp, paste('COUNTRIES_LIST_', length(unique(Main_Data$countrycode)),
-                     '.CSV'), row.names = FALSE)
+                     '.CSV', sep = ''), row.names = FALSE)
 
 if (FALSE) { 
   # Alternative GDP measures used for the sensitivity analysis
