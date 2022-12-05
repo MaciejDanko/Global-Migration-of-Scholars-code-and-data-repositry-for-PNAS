@@ -51,7 +51,7 @@ dfmigrouped = dfmipop[(dfmipop["year"] >= startyear ) & (dfmipop["year"] <= endy
 # calculate rates:
 dfmigrouped["outmigrationrate2"] = dfmigrouped["number_of_outmigrations"]/dfmigrouped["padded_population_of_researchers"]
 dfmigrouped["Emigration rate"] = dfmigrouped["outmigrationrate2"] * 1000
-dfmigrouped["ER"] = dfmigrouped["outmigrationrate2"] * 1000
+dfmigrouped[" "] = dfmigrouped["outmigrationrate2"] * 1000
 
 worldwide_total_researchers_in_period = dfmigrouped["padded_population_of_researchers"].sum()
 print(f"{worldwide_total_researchers_in_period=}")
@@ -62,14 +62,14 @@ hover_data={
             'countryname':True,
             'outmigrationrate2':True, 
             'padded_population_of_researchers':True,
-            'ER':True,
+            ' ':True,
         }
 
 conf = {"scrollZoom": False}
 fig = px.choropleth(dfmigrouped.reset_index(),
               locations='countrycode',
               locationmode='ISO-3',
-              color='ER',
+              color=' ',
               range_color=[.0,100],
               color_continuous_scale = [[0.0, 'rgb(170,220,249,0.5)'],
                       [.04, 'rgb(140,180,215,0.5)'],
@@ -82,6 +82,14 @@ fig = px.choropleth(dfmigrouped.reset_index(),
               hover_data =hover_data,
               #title=f'Emigration rate over 2013 - 2017 <br><sup>100 countries</sup>',#<br><sup>{len(dfmigrouped)=} countries</sup>',
               )
+
+fig.update_layout(title={
+        'text': "Emigration rates (per 1,000 scholars), 2013-2017",
+        'y':0.998,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'}
+)
 
 fig.update_traces(
     hovertemplate="<br>".join([
@@ -103,8 +111,10 @@ fig.update_traces(marker_line_width=0)
 fig.write_html(path +  f"FIGURES/Figure_1_{startyear}-{endyear}.html",config=conf)
 # %%
 # create pdf:
-fig.update_layout(width =900, height=400, font_size=16, 
-                  font_family="Sans-Serif",
-                  margin_l=0, margin_t=2, margin_b=1, margin_r=0)
+fig.update_layout(width =900, height=440, font_size=10,
+                  font_family="Arial",
+                  margin_l=0, margin_t=12, margin_b=2, margin_r=0)
+
 fig.write_image(path +  f"FIGURES/Figure_1_{startyear}-{endyear}.pdf")
+
 # %%
