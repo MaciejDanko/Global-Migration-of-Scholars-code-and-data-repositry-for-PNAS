@@ -201,6 +201,7 @@ plot_data_and_fit <- function(Main_Model,
                               plot_simple_model_fit = TRUE,
                               ylim = c(5,200), 
                               logGDP_class_size = 0.25,
+                              ax_font = 1,
                               xnam = 'GDP per capita in 1,000s of US dollars', 
                               ynam = 'Emigration rate per 1,000 scholars'){
   
@@ -315,17 +316,17 @@ plot_data_and_fit <- function(Main_Model,
   plot(ClassLogGDP, inf2NA(log(OutMigRate)), ylim = ylim, ylab = '', xlab = '',
        col = adjustcolor('gray', 0.5), border = adjustcolor('black', 0.5),
        las = 3, axes = FALSE)
-  ay<-c(0.00001, 0.000025, 0.00005, 0.0001, 0.00025, 0.0005, 0.001, 0.0025,
+  ay <- c(0.00001, 0.000025, 0.00005, 0.0001, 0.00025, 0.0005, 0.001, 0.0025,
         0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1)
-  axis(2, log(ay), ay * 1000, las = 1)
+  axis(2, log(ay), ay * 1000, las = 1, font = ax_font)
   box();
   
-  mtext(xnam, 1, 2.4)
-  mtext(ynam, 2, 2.4)
+  mtext(xnam, 1, 2.4, font = ax_font)
+  mtext(ynam, 2, 2.4, font = ax_font)
   if (length(YEAR) > 1) mtext(paste(paste(min(YEAR), '-', max(YEAR)), ', ', DATN,
-                                  ' Countries', sep = ''), 3, 0.1) else 
-                                    mtext(paste(YEAR, ', ', DATN, ' Countries',
-                                                sep = ''), 3, 0.1)
+                        ' Countries', sep = ''), 3, 0.1, font = ax_font) else 
+                        mtext(paste(YEAR, ', ', DATN, ' Countries',
+                        sep = ''), 3, 0.1, font = ax_font)
   
   # plot country-specific fits
   if (show_country_specific_fits){
@@ -360,9 +361,9 @@ plot_data_and_fit <- function(Main_Model,
   
   # plot x-axis
   gdplab <- c(50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 
-              100000,250000)
+              100000, 250000)
   xxl <- x2pos(log10(gdplab)) 
-  axis(1, xxl,labels = gdplab / 1000)
+  axis(1, xxl, labels = gdplab / 1000, font = ax_font)
   abline(v = x2pos(seq(1,6,0.25)), col = 'gray')
   
   # plot legend if simple model is also plotted
@@ -390,6 +391,7 @@ plot_data_and_fit(Main_Model,
                   plot_simple_model_fit = TRUE,
                   ylim = c(4.9916, 165.2989), 
                   logGDP_class_size = 0.25,
+                  ax_font = 2,
                   xnam = 'GDP per capita in 1,000s of US dollars', 
                   ynam = 'Emigration rate per 1,000 scholars')
 dev.off()
