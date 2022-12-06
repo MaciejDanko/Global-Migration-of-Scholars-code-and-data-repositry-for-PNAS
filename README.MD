@@ -10,7 +10,7 @@
 
 **Clone of this repository on OSF**: <https://osf.io/238zn/>
 
-The data used were extracted from the Bibliometric Database <https://github.com/tomthe/bibliometrics> (*in preparation*)
+The data used were extracted from the Bibliometric Database <http://scholarlymigration.org/> (*in preparation*)
 
 | File name              | Description                                                                                                                                                  |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
