@@ -382,7 +382,7 @@ plot_data_and_fit <- function(Main_Model,
 # Save the plot
 pdf('./FIGURES/Figure_2.pdf', width=9.73, height=7)
 par(mfrow = c(1, 1))
-par(mar = c(4, 4, 1, 1))
+par(mar = c(3.4, 3.4, 1, 0.5), oma=c(0,0,0,0))
 plot_data_and_fit(Main_Model, 
                   Simple_Model,
                   Main_Data,
