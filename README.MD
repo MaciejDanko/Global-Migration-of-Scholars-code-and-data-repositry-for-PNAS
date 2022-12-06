@@ -12,7 +12,7 @@
 
 The data used were extracted from the Bibliometric Database <https://github.com/tomthe/bibliometrics> (*in preparation*)
 
-| Filename               | Description                                                                                                                                                  |
+| File name              | Description                                                                                                                                                  |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | README.MD              | This file in Markdown format.                                                                                                                                |
 | README.HTML            | This file in html format.                                                                                                                                    |
