@@ -79,12 +79,11 @@ fig = px.choropleth(dfmigrouped.reset_index(),
                      ],
               projection="robinson",
               scope='world',
-              hover_data =hover_data,
-              #title=f'Emigration rate over 2013 - 2017 <br><sup>100 countries</sup>',#<br><sup>{len(dfmigrouped)=} countries</sup>',
+              hover_data =hover_data
               )
 
 fig.update_layout(title={
-        'text': "Emigration rates (per 1,000 scholars), 2013-2017",
+        'text': f"<b>Emigration rates (per 1,000 scholars), {startyear}-{endyear}</b>",
         'y':0.998,
         'x':0.5,
         'xanchor': 'center',
@@ -111,9 +110,9 @@ fig.update_traces(marker_line_width=0)
 fig.write_html(path +  f"FIGURES/Figure_1_{startyear}-{endyear}.html",config=conf)
 # %%
 # create pdf:
-fig.update_layout(width =900, height=440, font_size=10,
-                  font_family="Arial",
-                  margin_l=0, margin_t=12, margin_b=2, margin_r=0)
+fig.update_layout(width =900, height=440, font_size=13,
+                  font_family="Helvetica",
+                  margin_l=0, margin_t=12, margin_b=1, margin_r=0)
 
 fig.write_image(path +  f"FIGURES/Figure_1_{startyear}-{endyear}.pdf")
 
