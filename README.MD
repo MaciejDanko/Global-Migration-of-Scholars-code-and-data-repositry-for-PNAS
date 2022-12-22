@@ -1,4 +1,5 @@
-## Data and code for performing analyses and plotting figures in "Global Migration of Scholars: Trends and Patterns Revealed by Bibliometric Data"
+## Data and code for performing analyses and plotting figures in "Global patterns of migration of scholars with
+economic development"
 
 **Related paper:** Citation: ............................ DOI: ............................
 
