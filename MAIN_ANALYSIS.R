@@ -33,7 +33,8 @@ length(unique(DAT$countrycode))
 
 ################################################################################
 # Filter data by a GDP type and a number of countries of the highest average 
-# number of scientists.
+# number of scientists. It also removes small countries with average population 
+# size < "minsize" (in millions)
 #
 # Although Iceland and Luxembourg have a relatively large number of scientists, 
 # they are not included in the list of countries for analysis because their 
