@@ -38,7 +38,8 @@ length(unique(DAT$countrycode))
 # Although Iceland and Luxembourg have a relatively large number of scientists, 
 # they are not included in the list of countries for analysis because their 
 # populations are very small (<500,000)
-filter_data <- function(DAT, GDPType, NumberOfCountries){
+filter_data <- function(DAT, GDPType, NumberOfCountries, 
+                        remove_small_countries = TRUE, minsize = 0.5){
   # Inits and checks
   GDPType <- GDPType[1] 
   ValidType <- colnames(DAT)[grep('GDP',colnames(DAT))]
@@ -46,6 +47,7 @@ filter_data <- function(DAT, GDPType, NumberOfCountries){
                                         paste(paste('"', ValidType, '"', sep=''),
                                               collapse = ' , ')))
   NumberOfCountries <- NumberOfCountries[1]
+  
   if (NumberOfCountries > 100) NumberOfCountries <- 100
   if (NumberOfCountries < 2) NumberOfCountries <- 2
   
@@ -69,6 +71,16 @@ filter_data <- function(DAT, GDPType, NumberOfCountries){
   DAT <- DAT[,which(!grepl('GDP_', colnames(DAT)))]
   DAT$GDPType <- GDPType
   
+  # Remove small countries. For 100 countries these are Iceland, Luxembourg 
+  if(remove_small_countries){
+    smallCountries <- tapply(DAT$total_population_size, 
+                             DAT$countrycode, mean, na.rm=TRUE)/1e6
+    #minimum size in millions
+    smallCountries <- names(smallCountries)[smallCountries < minsize] 
+    TD <- unique(DAT$countryname[ which(paste(DAT$countrycode) %in% smallCountries )])
+    DAT <- DAT[which(!DAT$countryname %in% TD),]
+  }
+  
   # Limit the number of countries to those that meet the criteria
   SelectedCountries <- select_countries(DAT, NumberOfCountries, 'countryname')
   NoGDP_coutries <- UC_presel[which(!UC_presel %in% SelectedCountries)]
@@ -76,14 +88,15 @@ filter_data <- function(DAT, GDPType, NumberOfCountries){
     which(!SelectedCountries %in% UC_presel)]
   if (length(NoGDP_coutries)) 
     message(paste0('The following countries have a ',  
-                   'relatively large number of scholars but had to be removed 
-                   because they have no GDP (', GDPType, ') data:\n\t',
+                   'relatively large number of scholars but they had to be removed 
+                   because off no GDP (', GDPType, ') data or being too small:\n\t',
                    paste(NoGDP_coutries, collapse = ', '), '.\n',
                    'These countries were replaced by the next in line countries',
                    'with the largest number of scholars:\n\t',
                    paste(Replacement_countries, collapse = ', '), '.'))
   
   DAT <- DAT[which(DAT$countryname %in% SelectedCountries),]
+  
   DAT$countryname <- droplevels(DAT$countryname)
   DAT$countrycode <- droplevels(DAT$countrycode)
   DAT
@@ -93,8 +106,6 @@ filter_data <- function(DAT, GDPType, NumberOfCountries){
 Main_Data <- filter_data(DAT, 
                        GDPType = 'GDP_PCAP_PPP_Const2017', 
                        NumberOfCountries = 100)
-length(unique(Main_Data$countrycode))
-length(unique(DAT$countrycode))
 
 # Save list of 100 countries needed for Figure 1
 tmp <- Main_Data[,c('countrycode', 'countryname')][
