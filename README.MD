@@ -1,6 +1,10 @@
 ## Data and code for performing analyses and plotting figures in "Global patterns of migration of scholars with economic development"
 
-**Related paper:** Citation: ............................ DOI: ............................
+**Related paper** 
+
+**Citation** (APA style): Sanliturk, E., Zagheni, E., Dańko, M. J., Theile, T., & Akbaritabar, A. (2023). Global patterns of migration of scholars with economic development. Proceedings of the National Academy of Sciences, 120(4), e2217937120. https://doi.org/10.1073/pnas.2217937120
+
+**DOI**: [https://doi.org/10.1073/pnas.2217937120](https://doi.org/10.1073/pnas.2217937120)
 
 **Maintainer:** Maciej J. Dańko.
 
